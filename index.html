@@ -74,6 +74,25 @@
         .nav-btn:hover { background: #cbd5e1; }
         .nav-btn.active { background: var(--accent-color); color: white; }
 
+        /* Button Styling */
+        .action-btn, .secondary-btn {
+            background: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 10px 18px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.2s;
+        }
+        .secondary-btn {
+            background: var(--primary-color);
+        }
+        .action-btn:hover, .secondary-btn:hover {
+            opacity: 0.9;
+        }
+
         /* Page Views */
         .page-view { display: none; }
         .page-view.active { display: block; }
@@ -180,58 +199,6 @@
         .team-ul li { padding: 6px 0; border-bottom: 1px dashed #cbd5e1; font-weight: 500; display: flex; justify-content: space-between; }
         .team-ul li span.player-size { color: var(--text-muted); font-size: 0.85rem; font-weight: normal; }
         
-        /* 1v1 Tournament Bracket Visual Grid System */
-        .bracket-container {
-            display: flex;
-            align-items: center;
-            gap: 25px;
-            overflow-x: auto;
-            padding: 15px 5px;
-        }
-        .bracket-round {
-            display: flex;
-            flex-direction: column;
-            justify-content: space-around;
-            min-width: 210px;
-            height: 640px; /* Enhanced height boundaries to scale 16-node bracket splits */
-        }
-        .round-title {
-            text-align: center;
-            font-weight: 800;
-            font-size: 0.8rem;
-            color: var(--primary-color);
-            background: #e2e8f0;
-            padding: 4px;
-            border-radius: 4px;
-            margin-bottom: 10px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-        .bracket-matchup {
-            background: #f8fafc;
-            border: 1px solid var(--border-color);
-            border-radius: 6px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
-            padding: 8px;
-            display: flex;
-            flex-direction: column;
-            gap: 4px;
-            margin-bottom: 8px;
-        }
-        .bracket-slot {
-            padding: 6px 10px;
-            font-weight: 600;
-            font-size: 0.9rem;
-            border-radius: 4px;
-            background: white;
-            border-left: 3px solid #cbd5e1;
-            display: flex;
-            justify-content: space-between;
-        }
-        .bracket-slot.top-seed { border-left-color: var(--accent-color); }
-        .bracket-slot.bye-slot { color: #94a3b8; font-style: italic; background: #f1f5f9; border-left-color: #cbd5e1; }
-        .bracket-slot span.seed-no { font-size: 0.75rem; color: var(--text-muted); font-weight: normal; margin-right: 5px;}
-
         /* Profile Modal Layout */
         .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.6); backdrop-filter: blur(3px); justify-content: center; align-items: center; z-index: 1000; }
         .modal-content { background-color: white; padding: 25px; border-radius: 12px; width: 90%; max-width: 450px; position: relative; box-shadow: 0 10px 25px rgba(0,0,0,0.2); text-align: center; }
@@ -251,7 +218,6 @@
         <nav class="nav-tabs">
             <button id="tabLeaderboard" class="nav-btn active" onclick="switchPage('leaderboard')">Leaderboard</button>
             <button id="tabMatchmaker" class="nav-btn" onclick="switchPage('matchmaker')">Team Matchmaker</button>
-            <button id="tabTournament" class="nav-btn" onclick="switchPage('tournament')">👑 1v1 Bracket</button>
         </nav>
     </header>
 
@@ -328,51 +294,6 @@
             </div>
         </section>
     </div>
-
-    <div id="pageTournament" class="page-view">
-        <section class="card">
-            <h2>👑 1v1 Tournament Roster Bracket (11 Contenders)</h2>
-            <p style="font-size: 0.9rem; color: var(--text-muted); margin-top: -10px; margin-bottom: 20px;">
-                Includes qualifiers with >5 games, plus requested wildcards (**Julian, Krishaal, Thomas, Jason, Stefan**). Top 5 seeds receive a Round 1 Bye.
-            </p>
-            
-            <div class="bracket-container" id="bracketLayoutContainer">
-                <div>
-                    <div class="round-title">Round 1 (Play-ins)</div>
-                    <div class="bracket-round" id="roundOf16"></div>
-                </div>
-                
-                <div>
-                    <div class="round-title">Quarterfinals</div>
-                    <div class="bracket-round" id="roundQuarterfinals"></div>
-                </div>
-                
-                <div>
-                    <div class="round-title">Semifinals</div>
-                    <div class="bracket-round">
-                        <div class="bracket-matchup">
-                            <div class="bracket-slot" style="color: #94a3b8; font-style: italic;">QF1 Winner</div>
-                            <div class="bracket-slot" style="color: #94a3b8; font-style: italic;">QF4 Winner</div>
-                        </div>
-                        <div class="bracket-matchup">
-                            <div class="bracket-slot" style="color: #94a3b8; font-style: italic;">QF2 Winner</div>
-                            <div class="bracket-slot" style="color: #94a3b8; font-style: italic;">QF3 Winner</div>
-                        </div>
-                    </div>
-                </div>
-
-                <div>
-                    <div class="round-title">Finals</div>
-                    <div class="bracket-round">
-                        <div class="bracket-matchup" style="border: 2px solid #f1c40f;">
-                            <div class="bracket-slot" style="color: #94a3b8; font-style: italic; background: rgba(241, 196, 15, 0.04);">SF1 Winner</div>
-                            <div class="bracket-slot" style="color: #94a3b8; font-style: italic; background: rgba(241, 196, 15, 0.04);">SF2 Winner</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </div>
 </div>
 
 <div id="playerModal" class="modal-overlay" onclick="closeModalWindow(event)">
@@ -398,11 +319,9 @@
     function switchPage(pageName) {
         document.getElementById('tabLeaderboard').classList.toggle('active', pageName === 'leaderboard');
         document.getElementById('tabMatchmaker').classList.toggle('active', pageName === 'matchmaker');
-        document.getElementById('tabTournament').classList.toggle('active', pageName === 'tournament');
         
         document.getElementById('pageLeaderboard').classList.toggle('active', pageName === 'leaderboard');
         document.getElementById('pageMatchmaker').classList.toggle('active', pageName === 'matchmaker');
-        document.getElementById('pageTournament').classList.toggle('active', pageName === 'tournament');
     }
 
     function setLeaderboardSort(mode) {
@@ -482,100 +401,6 @@
 
     function closeModalWindow(event) {
         if(event.target.id === 'playerModal') document.getElementById('playerModal').style.display = 'none';
-    }
-
-    // AUTOMATED 16-NODE TOURNAMENT SEEDER ENGINE
-    function buildBalancedTournamentBracket() {
-        if (!window.BALL_RUN_DATA || !BALL_RUN_DATA.players) return;
-
-        let contestants = [];
-        const forcedPlayers = ['julian', 'krishaal', 'thomas', 'jason', 'stefan'];
-
-        BALL_RUN_DATA.players.forEach(p => {
-            const name = p[0];
-            const recordStr = p[2] || "0-0";
-            const parts = recordStr.split('-');
-            const totalGames = (parseInt(parts[0]) || 0) + (parseInt(parts[1]) || 0);
-            
-            // Inclusion rules: >5 games OR explicitly requested name matching
-            if (totalGames > 5 || forcedPlayers.includes(name.toLowerCase())) {
-                const score = getTierScore(p[1]) + getModifierAdjustment(p[1]);
-                contestants.push({ name: name, score: score, tier: p[1] });
-            }
-        });
-
-        // Rank by tier hierarchy descending
-        contestants.sort((a, b) => b.score - a.score);
-
-        const r1Container = document.getElementById('roundOf16');
-        const qfContainer = document.getElementById('roundQuarterfinals');
-        r1Container.innerHTML = '';
-        qfContainer.innerHTML = '';
-
-        // Standard 16-seed matching blueprint tree index pairings configuration mapping arrays
-        // format: [TopSeedIndex, BottomSeedIndex] where indices >= contestants.length become a "Bye"
-        const r1PairingsBlueprint = [
-            [0, 15], [7, 8],  // Feeds QF1 branch
-            [3, 12], [4, 11], // Feeds QF2 branch
-            [1, 14], [6, 9],  // Feeds QF3 branch
-            [2, 13], [5, 10]  // Feeds QF4 branch
-        ];
-
-        // Process Round 1 grid visual items mapping layouts
-        r1PairingsBlueprint.forEach((pair, matchIdx) => {
-            const topPlayer = contestants[pair[0]];
-            const bottomPlayer = contestants[pair[1]];
-
-            const matchDiv = document.createElement('div');
-            matchDiv.className = 'bracket-matchup';
-            matchDiv.innerHTML = `<div style="font-size:0.7rem; color:var(--text-muted); font-weight:bold;">R1 MATCH ${matchIdx + 1}</div>`;
-
-            // Render Top Slot
-            if (topPlayer) {
-                matchDiv.innerHTML += `
-                    <div class="bracket-slot top-seed">
-                        <span><span class="seed-no">#${pair[0]+1}</span><strong>${topPlayer.name}</strong></span>
-                    </div>`;
-            } else {
-                matchDiv.innerHTML += `<div class="bracket-slot bye-slot">Empty Slot</div>`;
-            }
-
-            // Render Bottom Slot
-            if (bottomPlayer) {
-                matchDiv.innerHTML += `
-                    <div class="bracket-slot">
-                        <span><span class="seed-no">#${pair[1]+1}</span><strong>${bottomPlayer.name}</strong></span>
-                    </div>`;
-            } else {
-                matchDiv.innerHTML += `<div class="bracket-slot bye-slot">⚖️ BYE (Advance)</div>`;
-            }
-
-            r1Container.appendChild(matchDiv);
-        });
-
-        // Process Round 2 (Quarterfinals) structural mapping elements display loops
-        // Groups R1 winners into pairs of two to show who feeds what QF slot branch
-        for (let i = 0; i < 4; i++) {
-            const topPair = r1PairingsBlueprint[i * 2];
-            const bottomPair = r1PairingsBlueprint[(i * 2) + 1];
-
-            // Evaluate if top-seed receives automatic advancement due to bottom-bye
-            const qfTopText = topPair[1] >= contestants.length ? `#${topPair[0] + 1} ${contestants[topPair[0]].name} (BYE)` : `R1 M${(i*2)+1} Winner`;
-            const qfBottomText = bottomPair[1] >= contestants.length ? `#${bottomPair[0] + 1} ${contestants[bottomPair[0]].name} (BYE)` : `R1 M${(i*2)+2} Winner`;
-
-            const qfDiv = document.createElement('div');
-            qfDiv.className = 'bracket-matchup';
-            qfDiv.innerHTML = `
-                <div style="font-size:0.7rem; color:var(--text-muted); font-weight:bold;">QUARTERFINAL ${i + 1}</div>
-                <div class="bracket-slot top-seed" style="${topPair[1] >= contestants.length ? 'background:#f0fdf4;' : ''}">
-                    <span>${qfTopText}</span>
-                </div>
-                <div class="bracket-slot" style="${bottomPair[1] >= contestants.length ? 'background:#f0fdf4;' : ''}">
-                    <span>${qfBottomText}</span>
-                </div>
-            `;
-            qfContainer.appendChild(qfDiv);
-        }
     }
 
     function runMatchmakerPredictor(teamA, teamB) {
@@ -689,8 +514,6 @@
             `;
             historyList.appendChild(li);
         });
-
-        buildBalancedTournamentBracket();
     }
 
     renderDashboard();
