@@ -5,7 +5,7 @@ var BALL_RUN_DATA = {
     players: [
         // Format: ["Name", "Tier/Ranking", "Record", "Height", "Weight", "Wingspan", "Photo URL"]
         ["Zain", "Staple", "0-0", "-'-", "--- lbs", "-'-\"", " "],
-        ["Karnveer", "Staple+", "0-0", "6'1", "209", "--", ""],
+        ["Karnveer", "Staple", "0-0", "6'1", "209", "--", ""],
         ["Josh", "Staple", "0-0", "-'-", "--- lbs", "-'-\"", " "],
         ["Sean", "Staple", "0-0", "-'-", "--- lbs", "-'-\"", " "],
         ["Suneel", "Staple", "0-0", "-'-", "--- lbs", "-'-\"", " "],
