@@ -15,6 +15,6 @@ var BALL_RUN_DATA = {
      ],
     history: [
         // Format: { desc: "What changed", date: "Date", author: "Who", reviewers: "Who reviewed" }
-        { desc: "Initial release", date: "6/5/2026", author: "KM", reviewers: "CB, SR" }
+        { desc: "Initial release", date: "6/20/2026", author: "KM", reviewers: "" }
     ]
 };
